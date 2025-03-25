@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class LightRemoteController : MonoBehaviour
 {
     [SerializeField] private  List<Light> linkedLights;
+    [SerializeField] private AudioSource audioSource; 
     private XRGrabInteractable grabInteractable;
 
     public void Start()
@@ -18,6 +19,11 @@ public class LightRemoteController : MonoBehaviour
     {
         for (int i = 0; i < linkedLights.Count; i++){
             linkedLights[i].enabled = !linkedLights[i].enabled;
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.Play(); 
         }
     }
 }
