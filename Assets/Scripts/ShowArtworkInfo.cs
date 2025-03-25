@@ -5,7 +5,16 @@ using UnityEngine;
 public class PushButtonSound : MonoBehaviour
 {
     public AudioSource audioSource; // Reference to the AudioSource
+    public GameObject canvas;
     private bool isPressed = false;  // To track if the button is pressed
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canvas.SetActive(true);
+        }
+    }
 
     // Detect when the button is pressed
     void OnTriggerStay(Collider other)
@@ -20,8 +29,16 @@ public class PushButtonSound : MonoBehaviour
         }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canvas.SetActive(false);
+        }
+    }
+
     // Play the sound
-    void PlaySound()
+    public void PlaySound()
     {
         if (audioSource != null)
         {
